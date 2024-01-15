@@ -8,7 +8,7 @@ const app = express()
 const conexion = new pg.Pool({
     connectionString: process.env.DATABASE_URL,
     // solo necesario en DEVELOPMENT
-    // ssl:true
+    ssl:true
 })
 // rutas
 app.get('/',(req,res)=>{
@@ -20,6 +20,8 @@ app.get('/conexion', async(req,res)=>{
     return res.json(resultado.rows[0])
 })
 
-app.listen( 3000)
-console.log("Sirviendo en puerto 3000")
+// app.listen( 3000)
+// console.log("Sirviendo en puerto 3000")
 
+app.listen( process.env.PORT || 3000)
+console.log("Escucha por" ,process.env.PORT || 3000)
