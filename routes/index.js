@@ -1,22 +1,13 @@
 const {Router} = require('express');
 // import { Router } from "express";
-const pg = require('pg')
 
-const conexion = new pg.Pool({
-    connectionString: process.env.DATABASE_URL,
-    // solo necesario en DEVELOPMENT
-    ssl:true
-})
 const router = Router();
 
-router.get('/',(req,res)=>{
-    res.send("Respuesta send texto ")
-})
+const { getSimple, conexionPG } = require("../funciones/index")
 
-router.get('/conexion', async(req,res)=>{
-    const resultado =  await conexion.query('SELECT NOW()')
-    return res.json(resultado.rows[0])
-})
+router.get('/simple', getSimple)
+
+router.get('/conexion', conexionPG)
 
 module.exports = router;
 
