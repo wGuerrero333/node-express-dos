@@ -3,11 +3,21 @@ const {Router} = require('express');
 
 const router = Router();
 
-const { getSimple, conexionPG } = require("../funciones/index")
+const { getSimple, conexionPG, conexionLocal, postearJson, getUserById, eliminarById, actualizar } = require("../funciones/funciones")
 
 router.get('/simple', getSimple)
 
-router.get('/conexion', conexionPG)
+router.get('/conexiontest', conexionPG)
+
+router.get('/conexionLocal', conexionLocal)
+
+router.post('/publicar', postearJson)
+// id se pasara por parametro en la ruta mediante la URL 
+router.get('/ById/:id', getUserById )
+
+router.delete('/borrar/:id', eliminarById)
+
+router.put('/put/:id', actualizar)
 
 module.exports = router;
 
