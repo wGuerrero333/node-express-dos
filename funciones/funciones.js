@@ -22,7 +22,9 @@ const getSimple = (req,res)=>{
 }
 
 const conexionPG = async(req,res)=>{
-    const resultado =  await conexion.query('SELECT NOW()')
+    // const resultado =  await conexion.query('SELECT NOW()')
+    const resultado =  await poolLocal.query('select * from registro2')
+
     return res.json(resultado.rows[0])
 }
 const conexionLocal = async(req,res)=>{
